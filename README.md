@@ -1,3 +1,18 @@
+http://ahncheer.github.io/react-page
+
+* Deploy
+git add .
+git commit -m 'commit 내용'
+git push -u origin master
+(강제로 push하기)(↑ git push origin +master )
+
+* 메모
+230117 GitHub Repository 생성 및 배포 
+
+* react Deploy + 배포시 참고한 것
+https://joylee-developer.tistory.com/136
+https://velog.io/@byjihye/react-github-pages
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
