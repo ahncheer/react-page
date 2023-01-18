@@ -2,6 +2,8 @@ http://ahncheer.github.io/react-page
 
 ## Deploy + Publish
 
+cd first-proj → npm start
+
 git add .
 
 git commit -m 'commit 내용'
