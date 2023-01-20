@@ -8,7 +8,7 @@ import CalcHelper from "./content/CalcHelper";
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { idx: 0 };
+		this.state = { idx: 2 };
 
 		// 콜백에서 `this`가 작동하려면 아래와 같이 바인딩 해주어야 합니다.
 		this.checkMenu = this.checkMenu.bind(this);
