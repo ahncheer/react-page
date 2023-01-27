@@ -1,6 +1,7 @@
 
 import './CalcHelper.css';
 import { propList } from "./utils/props";
+import { anemosMobList } from "./utils/anemosMob";
 import React, { useState } from 'react';
 
 
@@ -41,11 +42,12 @@ function CalcHelper() {
     };
 
     //검색 버튼 클릭
+    const [filteredList, setFilteredList] = useState(anemosMobList);
     const searchHuntNote = (e) => {
         console.log('---- 검색 ----');
         console.log('파티 종류 : ', (isSoloParty ? '솔팟' : '공팟'));
 
-        if(pLevel.firstNum > pLevel.secondNum){
+        if(pLevel.firstNum > pLevel.secondNum && !isSoloParty){
             let maxNum = pLevel.firstNum;
             setPLevel({firstNum : pLevel.secondNum, secondNum : maxNum});
         }
@@ -53,13 +55,25 @@ function CalcHelper() {
 
         let userPropList = [];
         propList.forEach((el, index) => {
-            if(checkedState[index] == true) userPropList.push(el.value);
+            if(checkedState[index] === true) userPropList.push(el.value);
         });       
         console.log('선택한 속성 값 : ', userPropList);
+
+        // ================== 필터 시작 ===================
+        let filterList = anemosMobList;
+        // const result = filterList.filter(word => userPropList.some(el => word.prop.toLowerCase().includes(el.toLowerCase())));
+        // const result = filterList.filter(word => userPropList.some(el => word.sortType.includes(el)));
+        const result = filterList.filter((word) => {
+            return userPropList.some(el => word.sortType.includes(el));
+          });
+        console.log('result : ', result);
+        setFilteredList(result);
     }
+
+
     
     return (
-        <div className="wrapper">
+        <div className="wrapper">  
             {/* <p>CalcHelper 영역입니다.</p> */}
 
         <div className="filter-wrap">
@@ -109,6 +123,16 @@ function CalcHelper() {
                 </div>
                 <div className="filter-con">
                     <button onClick={searchHuntNote}>검색</button>
+                </div>
+            </div>
+            <div>
+                <p>=============== 구분선 ===============</p>
+                <div>
+                    {filteredList.map(({ id, prop, lv, name }, index) => {
+                        return (
+                            <p key={id}>{prop}-{lv}-{name}</p>
+                        );
+                    })}
                 </div>
             </div>
         </div>
